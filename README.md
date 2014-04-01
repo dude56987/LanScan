@@ -1,4 +1,4 @@
 LanScan
 =======
 
-Scans the LAN for devices and returns thier hostname and IP address.
+Scans the LAN for devices then returns the hostname and IP address of each one.

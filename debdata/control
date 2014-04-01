@@ -1,0 +1,10 @@
+Package: hackbox-utils-lanscan
+Version: 0.1
+Section: admin
+Maintainer: Carl J Smith <feedback@hacker-haven.com>
+Installed-Size: 20
+Priority: optional
+Architecture: all
+Depends: python (>=2.7)
+Description: Scans the lan and returns hostnames and ip addresses.
+ Scans your lan and returns the hostname and ip address of every device connected.
