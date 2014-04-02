@@ -1,7 +1,7 @@
-Package: hackbox-utils-lanscan
+Package: lanscan
 Version: 0.1
 Section: admin
-Maintainer: Carl J Smith <feedback@hacker-haven.com>
+Maintainer: Carl J Smith <BM-NBHLt5EUFVEbRCmrbVrfCyaB2c8d24U9>
 Installed-Size: 20
 Priority: optional
 Architecture: all

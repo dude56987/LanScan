@@ -29,7 +29,8 @@ build-deb:
 	sed -i.bak 's/\.\/debian\///g' ./debian/DEBIAN/md5sums
 	rm -v ./debian/DEBIAN/md5sums.bak
 	cp -rv debdata/. debian/DEBIAN/
+	chmod -Rv go+r debian/
 	dpkg-deb --build debian
-	cp -v debian.deb lanscan.deb
+	cp -v debian.deb lanscan_UNSTABLE.deb
 	rm -v debian.deb
 	rm -rv debian
