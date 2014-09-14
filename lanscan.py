@@ -1,7 +1,7 @@
 #! /usr/bin/python
 ########################################################################
 # Scans the lan for pcs, prints thier ip and hostname.
-# Copyright (C) 2013  Carl J Smith
+# Copyright (C) 2014  Carl J Smith
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,15 +24,25 @@ socket.setdefaulttimeout(0.1)
 prefix = ('.'.join(socket.gethostbyname(socket.gethostname()+'.local').split('.')[:3]))+'.'
 print 'Scanning network using prefix:',prefix
 hostnames = []
-failureThreshold = 30
-failures = 0
+failureThreshold = 255
+failures = 0	
 for ip in range(255):
-	sys.stdout.write('Scanning: '+(prefix+str(ip))+(' '*10)+'\r')
-	#~ print 'scanning...'
-	#~ sys.stdout.write('Scanning...                                    \r')
+	# create clean tempIP var
+	tempIP=''
+	# set tempIP to store the ip being scanned
+	tempIP=(prefix+str(ip))
+	# display scanning info to user
+	sys.stdout.write('Scanning: '+(tempIP)+(' '*10)+'\r')
 	sys.stdout.flush()
+	# use this so that a failed ping does not crash the program
 	try:
-		sys.stdout.write((prefix+str(ip)) + ' ' + socket.gethostbyaddr((prefix+str(ip)))[0].split('.')[0] +'          \n')
+		# query the hostname for the ip address above
+		tempHOST=(socket.gethostbyaddr(tempIP))
+		# remove the .local part of the address 
+		tempHOST=tempHOST[0].split('.')[0]
+		# print out the ip and hostname to the user of pc if any is found
+		print ((tempIP)+ ' ' + tempHOST +(' '*10))
+		#sys.stdout.write((tempIP)+ ' ' + tempHOST +(' '*10)+'\n')
 		failures = 0
 	except:
 		#~ sys.stdout.write('Failed: '+(prefix+str(ip))+'\r')
@@ -45,6 +55,5 @@ for ip in range(255):
 		# far apart in the addressing
 		print ' '*60
 		print 'Scan Complete!'
-		#~ print '
 		exit()
-	#~ sys.stdout.write('\rScanning...                                   ')
+print 'Scan Complete!'
