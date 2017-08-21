@@ -1,15 +1,15 @@
 show:
 	echo 'Run "make install" as root to install program!'
-	
+
 run:
-	python lanscan.py
+	bash lanscan.sh
 install: build
 	sudo gdebi --non-interactive lanscan_UNSTABLE.deb
 uninstall:
 	sudo apt-get purge lanscan
 installed-size:
 	du -sx --exclude DEBIAN ./debian/
-build: 
+build:
 	sudo make build-deb;
 build-deb:
 	mkdir -p debian;
@@ -17,7 +17,7 @@ build-deb:
 	mkdir -p debian/usr;
 	mkdir -p debian/usr/bin;
 	# copy over the binary
-	cp -vf lanscan.py ./debian/usr/bin/lanscan
+	cp -vf lanscan.sh ./debian/usr/bin/lanscan
 	# make the program executable
 	chmod +x ./debian/usr/bin/lanscan
 	# Create the md5sums file
@@ -27,7 +27,7 @@ build-deb:
 	sed -i.bak 's/\\n*DEBIAN*\\n//g' ./debian/DEBIAN/md5sums
 	sed -i.bak 's/\\n*DEBIAN*//g' ./debian/DEBIAN/md5sums
 	rm -v ./debian/DEBIAN/md5sums.bak
-	# figure out the package size	
+	# figure out the package size
 	du -sx --exclude DEBIAN ./debian/ > Installed-Size.txt
 	# copy over package data
 	cp -rv debdata/. debian/DEBIAN/

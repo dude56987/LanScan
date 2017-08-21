@@ -1,10 +1,10 @@
 Package: lanscan
-Version: 0.1
+Version: 1.0
 Section: admin
 Maintainer: Carl J Smith <BM-NBHLt5EUFVEbRCmrbVrfCyaB2c8d24U9>
-Installed-Size: 20
+Installed-Size: 16
 Priority: optional
 Architecture: all
-Depends: python (>=2.7)
+Depends: bash, nmap, bsdmainutils, sed
 Description: Scans the lan and returns hostnames and ip addresses.
  Scans your lan and returns the hostname and ip address of every device connected.
